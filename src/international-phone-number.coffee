@@ -22,7 +22,10 @@ angular.module("internationalPhoneNumber", []).directive 'internationalPhoneNumb
 
 
     read = () ->
-      ctrl.$setViewValue element.val()
+      if element.val().trim().replace('+', '') == element.intlTelInput('getSelectedCountryData').dialCode or element.val().trim() == '' or element.val().trim() == '+'
+        ctrl.$setViewValue undefined
+      else
+        ctrl.$setViewValue element.val()
 
     handleWhatsSupposedToBeAnArray = (value) ->
       if value instanceof Array

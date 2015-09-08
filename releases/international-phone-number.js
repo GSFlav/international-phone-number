@@ -20,7 +20,10 @@
             }
           }
           read = function() {
-            return ctrl.$setViewValue(element.val());
+            if(element.val().trim().replace("+", "") == element.intlTelInput("getSelectedCountryData").dialCode || element.val().trim() == "" || element.val().trim() == "+")
+              return ctrl.$setViewValue(undefined);
+            else
+              return ctrl.$setViewValue(element.val());
           };
           handleWhatsSupposedToBeAnArray = function(value) {
             if (value instanceof Array) {
